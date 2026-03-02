@@ -1,20 +1,58 @@
-public class uc5 {
+import java.util.HashMap;
+
+public class OopsBanner {
+
     public static void main(String[] args) {
 
-        // Define and populate the array at declaration
-        String[] lines = {
-            String.join("   ", "   ***  ", "   ***  ", "  *****  ", "  *****  "),
-            String.join("   ", " **   **", " **   **", "  **   **", " **    "),
-            String.join("   ", "**     **", "**     **", "**    **", "**     "),
-            String.join("   ", "**     **", "**     **", "*****   ", " ***** "),
-            String.join("   ", "**     **", "**     **", "**      ", "      **"),
-            String.join("   ", " **   ** ", " **   ** ", "**      ", " **   **"),
-            String.join("   ", "  ***    ", "  ***    ", "**      ", "  ***  ")
-        };
+        HashMap<Character, String[]> patternMap = new HashMap<>();
 
-        // Use a for-each loop to iterate through the array and print each line
-        for (String line : lines) {
-            System.out.println(line);
+        patternMap.put('O', new String[]{
+            "  ****  ",   
+            "**    **",   
+            "**    **",   
+            "**    **",  
+            "**    **",   
+            "**    **",   
+            "  ****  "    
+        });
+
+        patternMap.put('P', new String[]{
+            "******* ",   
+            "**    **",    
+            "**    **",   
+            "******* ",   
+            "**      ",   
+            "**      ", 
+            "**      "    
+        });
+
+        patternMap.put('S', new String[]{
+            "  ******",   
+            "**      ",   
+            "**      ",   
+            "  ****  ",   
+            "      **",  
+            "      **",   
+            "******  "    
+        });
+
+        char[] word = { 'O', 'O', 'P', 'S' };
+
+        int rows = 7;
+
+        for (int row = 0; row < rows; row++) {
+            StringBuilder line = new StringBuilder();
+
+            for (int col = 0; col < word.length; col++) {
+                String[] pattern = patternMap.get(word[col]);
+                line.append(pattern[row]);
+
+                if (col < word.length - 1) {
+                    line.append("   ");
+                }
+            }
+
+            System.out.println(line.toString());
         }
     }
 }
